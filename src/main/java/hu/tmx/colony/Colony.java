@@ -7,8 +7,8 @@ import static hu.tmx.colony.geometry.RandomGenerator.stepsRandom;
 
 public class Colony {
 
-    private int width;
-    private Queen queen;
+    private final int width;
+    private final Queen queen;
     private ArrayList<Ants> workerAnts;
     private ArrayList<Ants> soldierAnts;
     private ArrayList<Ants> droneAnts;
@@ -19,13 +19,13 @@ public class Colony {
         generateAnts(antsRandom(), antsRandom(), antsRandom());
     }
 
-    private void generateAnts(int workers, int soldiers, int drones ){
-        workerAnts = new ArrayList<Ants>();
-        soldierAnts = new ArrayList<Ants>();
-        droneAnts = new ArrayList<Ants>();
+    private void generateAnts(int workers, int soldiers, int drones){
+        workerAnts = new ArrayList<>();
+        soldierAnts = new ArrayList<>();
+        droneAnts = new ArrayList<>();
         getAnts(workerAnts, "Worker", workers);
         getAnts(soldierAnts, "Soldier", soldiers);
-        getAnts(droneAnts, "Drone", workers);
+        getAnts(droneAnts, "Drone", drones);
     }
 
     public void update(){
@@ -37,7 +37,7 @@ public class Colony {
         }
     }
 
-    private void getAnts(ArrayList<Ants> antVariety, String antType,   int number){
+    private void getAnts(ArrayList<Ants> antVariety, String antType, int number){
         for (int i = 0; i < number; i++){
            switch (antType){
                case "Worker":

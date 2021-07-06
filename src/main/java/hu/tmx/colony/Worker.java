@@ -1,6 +1,5 @@
 package hu.tmx.colony;
 
-import hu.tmx.colony.geometry.Direction;
 import hu.tmx.colony.geometry.RandomGenerator;
 
 public class Worker extends Ants implements Behavior{
