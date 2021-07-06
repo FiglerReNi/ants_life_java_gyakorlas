@@ -1,9 +1,8 @@
 package hu.tmx.colony;
 
-public class Worker implements Ants{
+public class Worker extends Ants{
 
-    @Override
-    public void move() {
-
+    public Worker(int x, int y) {
+        super(x, y);
     }
 }

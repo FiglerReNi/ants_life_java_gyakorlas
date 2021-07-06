@@ -1,7 +1,12 @@
 package hu.tmx.colony;
 
-public interface Ants {
-    void move();
+public class Ants {
 
+    private Position position;
 
+    public Ants(){};
+
+    public Ants(int x, int y) {
+        this.position = new Position(x, y);
+    }
 }

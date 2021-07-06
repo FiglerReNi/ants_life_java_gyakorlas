@@ -1,8 +1,7 @@
 package hu.tmx.colony;
 
-public class Drone implements Ants{
-    @Override
-    public void move() {
-
+public class Drone extends Ants{
+    public Drone(int x, int y) {
+        super(x, y);
     }
 }

@@ -1,5 +1,7 @@
 package hu.tmx.colony;
 
+import static hu.tmx.colony.RandomGenerator.antsRandom;
+
 public class Colony {
 
     private int width;
@@ -8,12 +10,13 @@ public class Colony {
     public Colony(int width) {
         this.width = width;
         this.queen = new Queen(width/2, width/2);
-      //  this.generateAnts();
+        this.generateAnts(antsRandom(), antsRandom(), antsRandom());
     }
 
-//    private void generateAnts(int workers, int soldiers, int drones ){
-//
-//    }
+    private void generateAnts(int workers, int soldiers, int drones ){
+
+
+    }
 
 
 
