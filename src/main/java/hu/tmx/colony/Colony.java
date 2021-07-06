@@ -32,6 +32,9 @@ public class Colony {
         for (Ants workerA:workerAnts) {
             ((Worker) workerA).move();
         }
+        for (Ants soldierA:soldierAnts) {
+            ((Soldier) soldierA).move();
+        }
     }
 
     private void getAnts(ArrayList<Ants> antVariety, String antType,   int number){
