@@ -2,8 +2,8 @@ package hu.tmx.colony;
 
 import java.util.ArrayList;
 
-import static hu.tmx.colony.RandomGenerator.antsRandom;
-import static hu.tmx.colony.RandomGenerator.stepsRandom;
+import static hu.tmx.colony.geometry.RandomGenerator.antsRandom;
+import static hu.tmx.colony.geometry.RandomGenerator.stepsRandom;
 
 public class Colony {
 
@@ -16,7 +16,7 @@ public class Colony {
     public Colony(int width) {
         this.width = width;
         queen = new Queen(this.width /2, this.width /2);
-        this.generateAnts(antsRandom(), antsRandom(), antsRandom());
+        generateAnts(antsRandom(), antsRandom(), antsRandom());
     }
 
     private void generateAnts(int workers, int soldiers, int drones ){
@@ -26,8 +26,12 @@ public class Colony {
         getAnts(workerAnts, "Worker", workers);
         getAnts(soldierAnts, "Soldier", soldiers);
         getAnts(droneAnts, "Drone", workers);
+    }
 
-
+    public void update(){
+        for (Ants workerA:workerAnts) {
+            ((Worker) workerA).move();
+        }
     }
 
     private void getAnts(ArrayList<Ants> antVariety, String antType,   int number){

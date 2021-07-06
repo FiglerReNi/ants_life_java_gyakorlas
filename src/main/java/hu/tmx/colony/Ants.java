@@ -1,6 +1,8 @@
 package hu.tmx.colony;
 
-public class Ants {
+import hu.tmx.colony.geometry.Position;
+
+public class Ants{
 
     private Position position;
 
