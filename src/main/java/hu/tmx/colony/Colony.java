@@ -9,28 +9,51 @@ public class Colony {
 
     private int width;
     private Queen queen;
+    private ArrayList<Ants> workerAnts;
+    private ArrayList<Ants> soldierAnts;
+    private ArrayList<Ants> droneAnts;
 
     public Colony(int width) {
         this.width = width;
-        this.queen = new Queen(this.width /2, this.width /2);
+        queen = new Queen(this.width /2, this.width /2);
         this.generateAnts(antsRandom(), antsRandom(), antsRandom());
     }
 
     private void generateAnts(int workers, int soldiers, int drones ){
-        ArrayList<Worker> workerAnts = new ArrayList<Worker>();
-        for (int i = 0; i < workers; i++){
-            workerAnts.add(new Worker(stepsRandom(), stepsRandom()));
-        }
-        ArrayList<Soldier> soldierAnts = new ArrayList<Soldier>();
-        ArrayList<Drone> droneAnts = new ArrayList<Drone>();
+        workerAnts = new ArrayList<Ants>();
+        soldierAnts = new ArrayList<Ants>();
+        droneAnts = new ArrayList<Ants>();
+        getAnts(workerAnts, "Worker", workers);
+        getAnts(soldierAnts, "Soldier", soldiers);
+        getAnts(droneAnts, "Drone", workers);
+
 
     }
 
-    private Ants getAnts(String antsVariety, int number){
+    private void getAnts(ArrayList<Ants> antVariety, String antType,   int number){
         for (int i = 0; i < number; i++){
-            workerAnts.add(new + 'antsVariety'(stepsRandom(), stepsRandom()));
+           switch (antType){
+               case "Worker":
+                   antVariety.add(new Worker(stepsRandom(), stepsRandom()));
+                   break;
+               case "Soldier":
+                   antVariety.add(new Soldier(stepsRandom(), stepsRandom()));
+                   break;
+               case "Drone":
+                   antVariety.add(new Drone(stepsRandom(), stepsRandom()));
+                   break;
+           }
         }
     }
 
-
+    @Override
+    public String toString() {
+        return "Colony{" +
+                "width=" + width +
+                ", queen=" + queen +
+                ", workerAnts=" + workerAnts +
+                ", soldierAnts=" + soldierAnts +
+                ", droneAnts=" + droneAnts +
+                '}';
+    }
 }

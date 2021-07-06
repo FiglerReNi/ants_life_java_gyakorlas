@@ -3,7 +3,7 @@ package hu.tmx.colony;
 public class RandomGenerator {
 
     public static int antsRandom(){
-        return (int) (Math.random() * 5);
+        return (int) ((Math.random() * 5) + 1);
     }
 
     public static int stepsRandom(){
