@@ -9,7 +9,7 @@ public class Colony {
 
     public Colony(int width) {
         this.width = width;
-        this.queen = new Queen(width/2, width/2);
+        this.queen = new Queen(this.width /2, this.width /2);
         this.generateAnts(antsRandom(), antsRandom(), antsRandom());
     }
 
