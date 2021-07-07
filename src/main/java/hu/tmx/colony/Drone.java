@@ -20,7 +20,8 @@ public class Drone extends Ant{
                 getPosition().changePosition(Direction.SOUTH, width, 1);
             else
                 getPosition().changePosition(Direction.NORTH, width, 1);
-        }else{
+        }
+        if(getPosition().getX() == width/2 && getPosition().getY() == width/2){
             Direction direction = directionRandom();
             switch (direction){
                 case EAST:
