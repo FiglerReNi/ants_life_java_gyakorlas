@@ -4,6 +4,9 @@ import hu.tmx.colony.geometry.Direction;
 import static hu.tmx.colony.geometry.RandomGenerator.directionRandom;
 
 public class Drone extends Ant{
+
+    private int stayWithQueenCounter = 0;
+
     public Drone(int x, int y) {
         super(x, y);
     }
@@ -22,17 +25,21 @@ public class Drone extends Ant{
                 getPosition().changePosition(Direction.NORTH, width, 1);
         }
         if(getPosition().getX() == width/2 && getPosition().getY() == width/2){
-            Direction direction = directionRandom();
-            switch (direction){
-                case EAST:
-                case NORTH:
-                    getPosition().changePosition(direction, width, ((width/2)-1));
-                    break;
-                case WEST:
-                case SOUTH:
-                    getPosition().changePosition(direction, width, ((width/2)));
-                    break;
+            if(stayWithQueenCounter == 10) {
+                stayWithQueenCounter = 0;
+                Direction direction = directionRandom();
+                switch (direction) {
+                    case EAST:
+                    case NORTH:
+                        getPosition().changePosition(direction, width, ((width / 2) - 1));
+                        break;
+                    case WEST:
+                    case SOUTH:
+                        getPosition().changePosition(direction, width, ((width / 2)));
+                        break;
+                }
             }
+            stayWithQueenCounter++;
         }
     }
 }

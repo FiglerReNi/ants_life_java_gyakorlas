@@ -1,13 +1,17 @@
 package hu.tmx.colony;
 
+import java.util.ArrayList;
+
 import static hu.tmx.colony.geometry.RandomGenerator.stepsRandom;
 
 public class Colony {
 
     private final int width;
-    private final Queen queen;
+    private Queen queen;
+    private ArrayList<Ant> workerAnts = new ArrayList<>();
+    private ArrayList<Ant> soldierAnts = new ArrayList<>();
+    private ArrayList<Ant> droneAnts = new ArrayList<>();
     private Ant[][] ant;
-    private Ant[][] temp;
 
     public Colony(int width) {
         this.width = width;
@@ -17,36 +21,39 @@ public class Colony {
     }
 
     public void generateAnts(int workers, int soldiers, int drones){
-        getAnts("Worker", workers);
-        getAnts("Soldier", soldiers);
-        getAnts("Drone", drones);
+        getAnts(workerAnts, "Worker", workers);
+        getAnts(soldierAnts, "Soldier", soldiers);
+        getAnts(droneAnts, "Drone", drones);
     }
 
     public void update(){
-        temp = new Ant[this.width][this.width];
-        temp[this.width/2][this.width/2] = queen;
-        for (Ant[] antRow: ant){
-            for(Ant antItem:antRow){
-                if(antItem != null)
-                    replacePosition(antItem);
-            }
+        for (Ant workerA:workerAnts) {
+            replacePosition(((Worker) workerA));
         }
-        ant = temp;
+        for (Ant soldierA:soldierAnts) {
+            replacePosition(((Soldier) soldierA));
+        }
+        for (Ant droneA:droneAnts) {
+            replacePosition(((Drone) droneA));
+        }
     }
 
-    private void getAnts(String antType, int number){
+    private void getAnts(ArrayList<Ant> antVariety, String antType, int number){
         for (int i = 0; i < number; i++){
            switch (antType){
                case "Worker":
                    Worker worker = new Worker(stepsRandom(this.width), stepsRandom(this.width));
+                   antVariety.add(worker);
                    ant[worker.getPosition().getX()][worker.getPosition().getY()] = worker;
                    break;
                case "Soldier":
                    Soldier soldier = new Soldier(stepsRandom(this.width), stepsRandom(this.width));
+                   antVariety.add(soldier);
                    ant[soldier.getPosition().getX()][soldier.getPosition().getY()] = soldier;
                    break;
                case "Drone":
                    Drone drone = new Drone(stepsRandom(this.width), stepsRandom(this.width));
+                   antVariety.add(drone);
                    ant[drone.getPosition().getX()][drone.getPosition().getY()] = drone;
                    break;
            }
@@ -76,8 +83,12 @@ public class Colony {
     }
 
     private void replacePosition(Ant antItem){
-        ant[antItem.getPosition().getX()][antItem.getPosition().getY()] = null;
+        if(antItem.getPosition().getX() != width/2 || antItem.getPosition().getY() != width/2) {
+            ant[antItem.getPosition().getX()][antItem.getPosition().getY()] = null;
+        }
         antItem.move(this.width);
-        temp[antItem.getPosition().getX()][antItem.getPosition().getY()] = antItem;
+        if(antItem.getPosition().getX() != width/2 || antItem.getPosition().getY() != width/2) {
+            ant[antItem.getPosition().getX()][antItem.getPosition().getY()] = antItem;
+        }
     }
 }
