@@ -12,7 +12,7 @@ public class Soldier extends Ant{
 
     @Override
     public void move(int width) {
-        getPosition().changePosition(lastDirection, width);
+        getPosition().changePosition(lastDirection, width, 1);
         switch (lastDirection) {
             case NORTH:
                 lastDirection = Direction.EAST;

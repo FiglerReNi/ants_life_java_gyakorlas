@@ -10,6 +10,6 @@ public class Worker extends Ant{
 
     @Override
     public void move(int width) {
-        getPosition().changePosition(directionRandom(), width);
+        getPosition().changePosition(directionRandom(), width, 1);
     }
 }

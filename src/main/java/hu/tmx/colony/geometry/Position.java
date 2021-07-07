@@ -26,19 +26,19 @@ public class Position {
         this.y = y;
     }
 
-    public void changePosition(Direction direction, int width){
+    public void changePosition(Direction direction, int width, int step){
         switch (direction){
             case NORTH:
-                if(y + 1 <= width) setY(getY() + 1);
+                if(y + step < width) setY(getY() + step);
                 break;
             case EAST:
-                if(x + 1 <= width) setX(getX() + 1);
+                if(x + step < width) setX(getX() + step);
                 break;
             case SOUTH:
-                if(y - 1 >= 0) setY(getY() - 1);
+                if(y - step >= 0) setY(getY() - step);
                 break;
             case WEST:
-                if(x - 1 >= 0) setX(getX() - 1);
+                if(x - step >= 0) setX(getX() - step);
                 break;
         }
     }
