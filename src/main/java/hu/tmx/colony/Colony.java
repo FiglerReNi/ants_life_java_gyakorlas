@@ -7,17 +7,15 @@ import static hu.tmx.colony.geometry.RandomGenerator.stepsRandom;
 public class Colony {
 
     private final int width;
-    private Queen queen;
-    private ArrayList<Ant> workerAnts = new ArrayList<>();
-    private ArrayList<Ant> soldierAnts = new ArrayList<>();
-    private ArrayList<Ant> droneAnts = new ArrayList<>();
-    private Ant[][] ant;
+    private final ArrayList<Ant> workerAnts = new ArrayList<>();
+    private final ArrayList<Ant> soldierAnts = new ArrayList<>();
+    private final ArrayList<Ant> droneAnts = new ArrayList<>();
+    private final Ant[][] ant;
 
     public Colony(int width) {
         this.width = width;
-        queen = new Queen(this.width/2, this.width/2);
         ant = new Ant[this.width][this.width];
-        ant[this.width/2][this.width/2] = queen;
+        ant[this.width/2][this.width/2] = new Queen(this.width/2, this.width/2);
     }
 
     public void generateAnts(int workers, int soldiers, int drones){
@@ -28,13 +26,13 @@ public class Colony {
 
     public void update(){
         for (Ant workerA:workerAnts) {
-            replacePosition(((Worker) workerA));
+            replacePosition(workerA);
         }
         for (Ant soldierA:soldierAnts) {
-            replacePosition(((Soldier) soldierA));
+            replacePosition(soldierA);
         }
         for (Ant droneA:droneAnts) {
-            replacePosition(((Drone) droneA));
+            replacePosition(droneA);
         }
     }
 

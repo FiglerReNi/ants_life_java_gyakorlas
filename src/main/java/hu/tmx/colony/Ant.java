@@ -12,7 +12,7 @@ public abstract class Ant{
         this.position = new Position(x, y);
     }
 
-    void move(int width){};
+    void move(int width){}
 
     public Position getPosition() {
         return position;
