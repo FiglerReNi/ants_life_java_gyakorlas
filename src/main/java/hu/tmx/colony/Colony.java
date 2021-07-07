@@ -1,7 +1,5 @@
 package hu.tmx.colony;
 
-import java.util.ArrayList;
-
 import static hu.tmx.colony.geometry.RandomGenerator.stepsRandom;
 
 public class Colony {
