@@ -6,8 +6,8 @@ public class Colony {
 
     private final int width;
     private final Queen queen;
-    private Ant ant[][];
-    private Ant temp[][];
+    private Ant[][] ant;
+    private Ant[][] temp;
 
     public Colony(int width) {
         this.width = width;
