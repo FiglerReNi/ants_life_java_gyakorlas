@@ -2,7 +2,7 @@ package hu.tmx.colony;
 
 import hu.tmx.colony.geometry.Direction;
 
-public class Soldier extends Ants implements Behavior{
+public class Soldier extends Ant{
 
     public Soldier(int x, int y) {
         super(x, y);
@@ -11,8 +11,8 @@ public class Soldier extends Ants implements Behavior{
     private Direction lastDirection = Direction.NORTH;
 
     @Override
-    public void move() {
-        getPosition().changeDirection(lastDirection);
+    public void move(int width) {
+        getPosition().changePosition(lastDirection, width);
         switch (lastDirection) {
             case NORTH:
                 lastDirection = Direction.EAST;

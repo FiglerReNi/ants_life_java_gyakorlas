@@ -7,13 +7,9 @@ import java.util.Random;
 
 public class RandomGenerator {
 
-    public static int antsRandom(){
-        return (int) ((Math.random() * 5) + 1);
-    }
-
     public static int stepsRandom(int width){
         int rand = (int) (Math.random() * width);
-        while(rand == 50){
+        while(rand == width/2){
             rand = (int) (Math.random() * width);
         }
         return rand;

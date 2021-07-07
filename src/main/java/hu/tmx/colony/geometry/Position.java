@@ -10,27 +10,35 @@ public class Position {
         this.y = y;
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
+    public int getX() {
+        return x;
     }
 
-    public void changeDirection(Direction direction){
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void changePosition(Direction direction, int width){
         switch (direction){
             case NORTH:
-                if(y + 1 <= 100) y = y + 1;
+                if(y + 1 <= width) setY(getY() + 1);
                 break;
             case EAST:
-                if(x + 1 <= 100) x = x + 1;
+                if(x + 1 <= width) setX(getX() + 1);
                 break;
             case SOUTH:
-                if(y - 1 >= 0) y = y - 1;
+                if(y - 1 >= 0) setY(getY() - 1);
                 break;
             case WEST:
-                if(x - 1 >= 0) x = x - 1;
+                if(x - 1 >= 0) setX(getX() - 1);
                 break;
         }
     }

@@ -1,19 +1,25 @@
 package hu.tmx.colony;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args){
-        Colony colony = new Colony(100);
-        System.out.println(colony);
-        colony.update();
-        System.out.println(colony);
-        colony.update();
-        System.out.println(colony);
-        colony.update();
-        System.out.println(colony);
-        colony.update();
-        System.out.println(colony);
+        Colony colony = new Colony(10);
+        colony.generateAnts(1,1,1);
+        colony.display();
 
-//        Direction r = RandomGenerator.directionRandom();
-//        System.out.println(r);
+        boolean run = true;
+        Scanner sc = new Scanner(System.in);
+        while(run){
+            System.out.println("Next move with enter");
+            String text = sc.nextLine();
+            if(text.equals("")){
+                System.out.println("AFTER MOVE:");
+                colony.update();
+                colony.display();
+            }else if(text.equals("q")){
+                run = false;
+            }
+        }
     }
 }

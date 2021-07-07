@@ -1,15 +1,15 @@
 package hu.tmx.colony;
 
-import hu.tmx.colony.geometry.RandomGenerator;
+import static hu.tmx.colony.geometry.RandomGenerator.directionRandom;
 
-public class Worker extends Ants implements Behavior{
+public class Worker extends Ant{
 
     public Worker(int x, int y) {
         super(x, y);
     }
 
     @Override
-    public void move() {
-        getPosition().changeDirection(RandomGenerator.directionRandom());
+    public void move(int width) {
+        getPosition().changePosition(directionRandom(), width);
     }
 }
