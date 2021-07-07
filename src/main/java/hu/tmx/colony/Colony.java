@@ -41,13 +41,13 @@ public class Colony {
         for (int i = 0; i < number; i++){
            switch (antType){
                case "Worker":
-                   antVariety.add(new Worker(stepsRandom(), stepsRandom()));
+                   antVariety.add(new Worker(stepsRandom(this.width), stepsRandom(this.width)));
                    break;
                case "Soldier":
-                   antVariety.add(new Soldier(stepsRandom(), stepsRandom()));
+                   antVariety.add(new Soldier(stepsRandom(this.width), stepsRandom(this.width)));
                    break;
                case "Drone":
-                   antVariety.add(new Drone(stepsRandom(), stepsRandom()));
+                   antVariety.add(new Drone(stepsRandom(this.width), stepsRandom(this.width)));
                    break;
            }
         }
