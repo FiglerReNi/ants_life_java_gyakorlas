@@ -7,6 +7,7 @@ import static hu.tmx.colony.geometry.RandomGenerator.stepsRandom;
 public class Colony {
 
     private final int width;
+    private final Queen queen;
     private final ArrayList<Ant> workerAnts = new ArrayList<>();
     private final ArrayList<Ant> soldierAnts = new ArrayList<>();
     private final ArrayList<Ant> droneAnts = new ArrayList<>();
@@ -15,7 +16,8 @@ public class Colony {
     public Colony(int width) {
         this.width = width;
         ant = new Ant[this.width][this.width];
-        ant[this.width/2][this.width/2] = new Queen(this.width/2, this.width/2);
+        queen = new Queen(this.width/2, this.width/2);
+        ant[this.width/2][this.width/2] = queen;
     }
 
     public void generateAnts(int workers, int soldiers, int drones){
@@ -24,7 +26,7 @@ public class Colony {
         getAnts(droneAnts, "Drone", drones);
     }
 
-    public void update(){
+    public void update() throws Exception {
         for (Ant workerA:workerAnts) {
             replacePosition(workerA);
         }
@@ -80,11 +82,16 @@ public class Colony {
         }
     }
 
-    private void replacePosition(Ant antItem){
+    private void replacePosition(Ant antItem) throws Exception {
         if(antItem.getPosition().getX() != width/2 || antItem.getPosition().getY() != width/2) {
             ant[antItem.getPosition().getX()][antItem.getPosition().getY()] = null;
         }
-        antItem.move(this.width);
+        if(antItem instanceof Drone){
+            Drone drone = (Drone)antItem;
+            drone.move(this.width, queen);
+        }else{
+            antItem.move(this.width);
+        }
         if(antItem.getPosition().getX() != width/2 || antItem.getPosition().getY() != width/2) {
             ant[antItem.getPosition().getX()][antItem.getPosition().getY()] = antItem;
         }

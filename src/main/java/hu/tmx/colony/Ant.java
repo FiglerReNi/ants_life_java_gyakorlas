@@ -12,7 +12,7 @@ public abstract class Ant{
         this.position = new Position(x, y);
     }
 
-    void move(int width){}
+    public abstract void move(int width) throws Exception;
 
     public Position getPosition() {
         return position;

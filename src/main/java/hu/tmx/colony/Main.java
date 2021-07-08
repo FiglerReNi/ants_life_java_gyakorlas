@@ -15,7 +15,11 @@ public class Main {
             String text = sc.nextLine();
             if(text.equals("")){
                 System.out.println("AFTER MOVE:");
-                colony.update();
+                try{
+                    colony.update();
+                }catch(Exception e){
+                    System.out.println("Error" + e);
+                }
                 colony.display();
             }else if(text.equals("q")){
                 run = false;

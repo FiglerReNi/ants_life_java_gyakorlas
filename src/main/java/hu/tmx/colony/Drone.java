@@ -2,6 +2,10 @@ package hu.tmx.colony;
 
 import hu.tmx.colony.geometry.Direction;
 import hu.tmx.colony.geometry.RandomGenerator;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Date;
 
 public class Drone extends Ant{
 
@@ -10,9 +14,19 @@ public class Drone extends Ant{
     public Drone(int x, int y) {
         super(x, y);
     }
-
     @Override
-    public void move(int width) {
+    public void move(int width){
+        try {
+            FileWriter fw = new FileWriter("src/main/resources/move.log",true);
+            BufferedWriter out = new BufferedWriter(fw);
+            out.write("Queen is missing" + new Date() + "\n");
+            out.close();
+        } catch (IOException e) {
+            System.out.println("FileWrite error" + e);
+        }
+    }
+
+    public void move(int width, Queen queen) {
         if(getPosition().getX() != width/2){
             if(getPosition().getX() > width/2)
                 getPosition().changePosition(Direction.WEST, width, 1);
