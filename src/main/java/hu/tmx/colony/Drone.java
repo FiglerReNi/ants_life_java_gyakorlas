@@ -1,7 +1,7 @@
 package hu.tmx.colony;
 
 import hu.tmx.colony.geometry.Direction;
-import static hu.tmx.colony.geometry.RandomGenerator.directionRandom;
+import hu.tmx.colony.geometry.RandomGenerator;
 
 public class Drone extends Ant{
 
@@ -27,15 +27,23 @@ public class Drone extends Ant{
         if(getPosition().getX() == width/2 && getPosition().getY() == width/2){
             if(stayWithQueenCounter == 10) {
                 stayWithQueenCounter = 0;
-                Direction direction = directionRandom();
-                switch (direction) {
-                    case EAST:
+                Direction direction = RandomGenerator.directionRandom();
+                switch (direction){
                     case NORTH:
-                        getPosition().changePosition(direction, width, ((width / 2) - 1));
+                        getPosition().setY(width-1);
+                        getPosition().setX(RandomGenerator.stepsRandom(width));
+                        break;
+                    case EAST:
+                        getPosition().setY(RandomGenerator.stepsRandom(width));
+                        getPosition().setX(width-1);
                         break;
                     case WEST:
+                        getPosition().setY(RandomGenerator.stepsRandom(width));
+                        getPosition().setX(0);
+                        break;
                     case SOUTH:
-                        getPosition().changePosition(direction, width, ((width / 2)));
+                        getPosition().setY(0);
+                        getPosition().setX(RandomGenerator.stepsRandom(width));
                         break;
                 }
             }
