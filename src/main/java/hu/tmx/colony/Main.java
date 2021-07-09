@@ -1,5 +1,7 @@
 package hu.tmx.colony;
 
+import hu.tmx.colony.geometry.RandomGenerator;
+
 import java.util.Scanner;
 
 public class Main {

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 public class RandomGenerator {
+    private final static Random RANDOM = new Random();
 
     public static int stepsRandom(int width){
         int rand = (int) (Math.random() * width);
@@ -18,7 +19,10 @@ public class RandomGenerator {
     public static Direction directionRandom(){
         List<Direction> VALUES = Collections.unmodifiableList(Arrays.asList(Direction.values()));
         int SIZE = VALUES.size();
-        Random RANDOM = new Random();
         return VALUES.get(RANDOM.nextInt(SIZE));
+    }
+
+    public static int moodRandom(int from, int to){
+        return RANDOM.nextInt(to - from + 1) + from;
     }
 }

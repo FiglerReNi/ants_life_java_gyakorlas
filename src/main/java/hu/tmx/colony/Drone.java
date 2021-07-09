@@ -39,29 +39,42 @@ public class Drone extends Ant{
                 getPosition().changePosition(Direction.NORTH, width, 1);
         }
         if(getPosition().getX() == width/2 && getPosition().getY() == width/2){
-            if(stayWithQueenCounter == 10) {
-                stayWithQueenCounter = 0;
-                Direction direction = RandomGenerator.directionRandom();
-                switch (direction){
-                    case NORTH:
-                        getPosition().setY(width-1);
-                        getPosition().setX(RandomGenerator.stepsRandom(width));
-                        break;
-                    case EAST:
-                        getPosition().setY(RandomGenerator.stepsRandom(width));
-                        getPosition().setX(width-1);
-                        break;
-                    case WEST:
-                        getPosition().setY(RandomGenerator.stepsRandom(width));
-                        getPosition().setX(0);
-                        break;
-                    case SOUTH:
-                        getPosition().setY(0);
-                        getPosition().setX(RandomGenerator.stepsRandom(width));
-                        break;
+            if(queen.getMood() == 0){
+                stayWithQueenCounter++;
+                queen.setMood(RandomGenerator.moodRandom(queen.getFrom(), queen.getTo()));
+            }else{
+                if(stayWithQueenCounter == 0){
+                    droneNewPlace(width);
+                }else{
+                    if(stayWithQueenCounter == 10) {
+                        stayWithQueenCounter = 0;
+                        droneNewPlace(width);
+                    }
+                    stayWithQueenCounter++;
                 }
             }
-            stayWithQueenCounter++;
+        }
+    }
+
+    private void droneNewPlace(int width){
+        Direction direction = RandomGenerator.directionRandom();
+        switch (direction){
+            case NORTH:
+                getPosition().setY(width-1);
+                getPosition().setX(RandomGenerator.stepsRandom(width));
+                break;
+            case EAST:
+                getPosition().setY(RandomGenerator.stepsRandom(width));
+                getPosition().setX(width-1);
+                break;
+            case WEST:
+                getPosition().setY(RandomGenerator.stepsRandom(width));
+                getPosition().setX(0);
+                break;
+            case SOUTH:
+                getPosition().setY(0);
+                getPosition().setX(RandomGenerator.stepsRandom(width));
+                break;
         }
     }
 }

@@ -27,6 +27,11 @@ public class Colony {
     }
 
     public void update() throws Exception {
+        System.out.println(queen.getMood());
+        if(queen.getMood() != 0){
+            queen.setMood(queen.getMood()-1);
+        }
+        System.out.println(queen.getMood());
         for (Ant workerA:workerAnts) {
             replacePosition(workerA);
         }
