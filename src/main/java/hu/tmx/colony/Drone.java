@@ -39,9 +39,10 @@ public class Drone extends Ant{
                 getPosition().changePosition(Direction.NORTH, width, 1);
         }
         if(getPosition().getX() == width/2 && getPosition().getY() == width/2){
-            if(queen.getMood() == 0){
+            if(queen.isReadyToMate()){
                 stayWithQueenCounter++;
-                queen.setMood(RandomGenerator.moodRandom(queen.getFrom(), queen.getTo()));
+                queen.setStepsUntilReady(RandomGenerator.moodRandom(queen.getFrom(), queen.getTo()));
+                queen.setReadyToMate(false);
             }else{
                 if(stayWithQueenCounter == 0){
                     droneNewPlace(width);

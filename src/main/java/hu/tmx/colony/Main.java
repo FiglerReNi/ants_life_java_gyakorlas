@@ -2,10 +2,17 @@ package hu.tmx.colony;
 
 import hu.tmx.colony.geometry.RandomGenerator;
 
+import java.io.File;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
+
+        /* Útvonal példa
+        File file = new File("soldier.java");
+        String path = file.getAbsolutePath();
+        System.out.println(path);*/
+
         Colony colony = new Colony(10);
         colony.generateAnts(1,1,1);
         colony.display();
@@ -29,3 +36,5 @@ public class Main {
         }
     }
 }
+
+

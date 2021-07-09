@@ -27,11 +27,14 @@ public class Colony {
     }
 
     public void update() throws Exception {
-        System.out.println(queen.getMood());
-        if(queen.getMood() != 0){
-            queen.setMood(queen.getMood()-1);
+        System.out.println(queen.getStepsUntilReady());
+        if(!queen.isReadyToMate()){
+            queen.setStepsUntilReady(queen.getStepsUntilReady()-1);
+            if(queen.getStepsUntilReady() == 0){
+                queen.setReadyToMate(true);
+            }
         }
-        System.out.println(queen.getMood());
+        System.out.println(queen.getStepsUntilReady());
         for (Ant workerA:workerAnts) {
             replacePosition(workerA);
         }

@@ -6,13 +6,14 @@ import static hu.tmx.colony.geometry.RandomGenerator.directionRandom;
 
 public class Queen extends Ant{
 
-    private int mood;
+    private int stepsUntilReady;
     private int from = 2;
     private int to = 4;
+    private boolean readyToMate = false;
 
     public Queen(int x, int y) {
         super(x, y);
-        mood = RandomGenerator.moodRandom(from, to);
+        stepsUntilReady = RandomGenerator.moodRandom(from, to);
     }
 
     public void setFrom(int from) {
@@ -31,12 +32,20 @@ public class Queen extends Ant{
         return to;
     }
 
-    public int getMood() {
-        return mood;
+    public int getStepsUntilReady() {
+        return stepsUntilReady;
     }
 
-    public void setMood(int mood) {
-        this.mood = mood;
+    public void setStepsUntilReady(int stepsUntilReady) {
+        this.stepsUntilReady = stepsUntilReady;
+    }
+
+    public boolean isReadyToMate() {
+        return readyToMate;
+    }
+
+    public void setReadyToMate(boolean readyToMate) {
+        this.readyToMate = readyToMate;
     }
 
     @Override
