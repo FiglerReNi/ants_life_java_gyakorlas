@@ -11,7 +11,7 @@ public class Colony {
     private final ArrayList<Ant> workerAnts = new ArrayList<>();
     private final ArrayList<Ant> soldierAnts = new ArrayList<>();
     private final ArrayList<Ant> droneAnts = new ArrayList<>();
-    private final Ant[][] ant;
+    private Ant[][] ant;
 
     public Colony(int width) {
         this.width = width;
